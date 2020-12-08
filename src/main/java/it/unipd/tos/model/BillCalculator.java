@@ -19,7 +19,7 @@ public class BillCalculator implements TakeAwayBill {
             List<MenuItem> gelatiList=new ArrayList<MenuItem>();
             double sum=0;
             for (MenuItem menuItem : itemsOrder) {
-                if(menuItem.getItemType()==ItemType.Gelato) {
+                if(menuItem.getItemType() == ItemType.Gelato) {
                     gelatiList.add(menuItem);
                 }
                 sum+=menuItem.getPrice();
