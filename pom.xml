@@ -67,8 +67,33 @@
 		  </excludes>
 		  <limits>
 		    <limit>
+		      <counter>INSTRUCTION</counter>
+		      <value>COVEREDRATIO</value>
+		      <minimum>0.85</minimum>
+		    </limit>
+		    <limit>
 		      <counter>LINE</counter>
 		      <value>COVEREDRATIO</value>
+		      <minimum>0.85</minimum>
+		    </limit>
+		    <limit>
+		      <counter>BRANCH</counter>
+		      <value>COVEREDRATIO</value>
+		      <minimum>0.85</minimum>
+		    </limit>
+		    <limit>
+		      <counter>COMPLEXITY</counter>
+		      <value>COVEREDRATIO</value>
+		      <minimum>0.85</minimum>
+		    </limit>
+		    <limit>
+		      <counter>METHOD</counter>
+		      <value>COVEREDRATIO</value>
+		      <minimum>0.85</minimum>
+		    </limit>
+		    <limit>
+		      <counter>LINE</counter>
+		      <value>CLASS</value>
 		      <minimum>0.85</minimum>
 		    </limit>
 		  </limits>
