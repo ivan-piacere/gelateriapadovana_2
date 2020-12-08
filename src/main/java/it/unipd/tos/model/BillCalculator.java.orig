@@ -16,8 +16,12 @@ public class BillCalculator implements TakeAwayBill {
             throw new TakeAwayBillException();
         }else
         {
+<<<<<<< HEAD
+            double sum = 0;
+=======
             List<MenuItem> gelatiList=new ArrayList<MenuItem>();
             double sum=0;
+>>>>>>> feature/feature2
             for (MenuItem menuItem : itemsOrder) {
                 if(menuItem.getItemType() == ItemType.Gelato) {
                     gelatiList.add(menuItem);
