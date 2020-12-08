@@ -33,6 +33,10 @@ public class BillCalculator implements TakeAwayBill {
             }
             System.out.println("endcheap");
             System.out.println(sum);
+            
+            if(sum>50) {
+                sum -=sum/10;
+            }
             return sum;
         }
     }

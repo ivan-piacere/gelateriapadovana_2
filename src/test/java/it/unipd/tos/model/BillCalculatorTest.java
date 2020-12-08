@@ -44,22 +44,24 @@ public class BillCalculatorTest {
         System.out.println("BillCalculator_Multiple_Items_Input_Test");
         BillCalculator billCalc=new BillCalculator();
         List<MenuItem> MenuItemList=new ArrayList<MenuItem>();
-        for(int x=0;x<10;x++) {
+        int itemsQuantity=4;
+        int price=6;
+        for(int x=0;x<itemsQuantity;x++) {
             MenuItem menuItem = new MenuItem(
                     ItemType.Bevanda,
                     "Biancaneve", 
-                    12);
+                    price);
             MenuItemList.add(menuItem);
         }
         User user = new User(1,"ciao","lol",15);
         double resultPrice=0;
         resultPrice=billCalc.getOrderPrice(MenuItemList, user);
-        assertEquals(12*10,resultPrice,0);
+        assertEquals(itemsQuantity*price,resultPrice,0);
     }
     
     @Test
     public void BillCalculator_More_Than_5_Gelati()
-        throws TakeAwayBillException{
+            throws TakeAwayBillException{
         System.out.println("BillCalculator_More_Than_5_Gelati");
         BillCalculator billCalc=new BillCalculator();
         List<MenuItem> MenuItemList=new ArrayList<MenuItem>();
@@ -81,6 +83,30 @@ public class BillCalculatorTest {
         double resultPrice=0;
         resultPrice=billCalc.getOrderPrice(MenuItemList, user);
         double expectedPrice=15.+12.+7.+5.+4.+3./2;
+        assertEquals(expectedPrice,resultPrice,0);
+    }
+    
+    @Test
+    public void BillCalculator_More_Than_50_Euros()
+            throws TakeAwayBillException{
+        System.out.println("BillCalculator_More_Than_50_Euros");
+        
+        BillCalculator billCalc=new BillCalculator();
+        List<MenuItem> MenuItemList=new ArrayList<MenuItem>();
+        int itemsQuantity=10;
+        int price=6;
+        for(int x=0;x<itemsQuantity;x++) {
+            MenuItem menuItem = new MenuItem(
+                    ItemType.Budino,
+                    "Budino1", 
+                    price);
+            MenuItemList.add(menuItem);
+        }
+        User user = new User(1,"Carlo","Franchi",15);
+        double resultPrice=0;
+        resultPrice=billCalc.getOrderPrice(MenuItemList, user);
+        double expectedBasePrice=itemsQuantity*price;
+        double expectedPrice= expectedBasePrice * 0.9;
         assertEquals(expectedPrice,resultPrice,0);
     }
     
