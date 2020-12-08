@@ -27,7 +27,7 @@ public class BillCalculatorTest {
     @Test
     public void BillCalculator_Single_Input_Test()
             throws TakeAwayBillException{
-    	System.out.println("BillCalculator_Single_Input_Test");
+        System.out.println("BillCalculator_Single_Input_Test");
         BillCalculator billCalc=new BillCalculator();
         MenuItem menuItem = new MenuItem(ItemType.Gelato, "Biancaneve", 12);
         List<MenuItem> MenuItemList=new ArrayList<MenuItem>();
@@ -60,7 +60,7 @@ public class BillCalculatorTest {
     @Test
     public void BillCalculator_More_Than_5_Gelati()
         throws TakeAwayBillException{
-    	System.out.println("BillCalculator_More_Than_5_Gelati");
+        System.out.println("BillCalculator_More_Than_5_Gelati");
         BillCalculator billCalc=new BillCalculator();
         List<MenuItem> MenuItemList=new ArrayList<MenuItem>();
         

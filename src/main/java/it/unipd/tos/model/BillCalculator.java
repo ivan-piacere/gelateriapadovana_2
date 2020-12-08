@@ -16,19 +16,20 @@ public class BillCalculator implements TakeAwayBill {
             throw new TakeAwayBillException();
         }else
         {
-        	
-        	List<MenuItem> gelatiList=new ArrayList<MenuItem>();
+            List<MenuItem> gelatiList=new ArrayList<MenuItem>();
             double sum=0;
             for (MenuItem menuItem : itemsOrder) {
-            	if(menuItem.getItemType()==ItemType.Gelato) {
-            		gelatiList.add(menuItem);
-            	}
+                if(menuItem.getItemType()==ItemType.Gelato) {
+                    gelatiList.add(menuItem);
+                }
                 sum+=menuItem.getPrice();
             }
             System.out.println(sum);
             if(gelatiList.size()>5) {
-            	double halfPriceCheaperGelato=getCheaper(gelatiList).getPrice()/2;
-            	sum-=halfPriceCheaperGelato;
+                double halfPriceCheaperGelato=getCheaper(gelatiList)
+                                              .getPrice()
+                                              /2;
+                sum-=halfPriceCheaperGelato;
             }
             System.out.println("endcheap");
             System.out.println(sum);
@@ -37,16 +38,14 @@ public class BillCalculator implements TakeAwayBill {
     }
     
     private MenuItem getCheaper(List<MenuItem> list) {
-    	
-    	double minPrice = Double.POSITIVE_INFINITY;
-    	MenuItem cheaper=null;
-    	for(MenuItem mi: list) {
-    		if(mi.getPrice()<minPrice) {
-    			minPrice=mi.getPrice();
-    			cheaper=mi;
-    		}
-    	}
-    	
-    	return cheaper;
+        double minPrice = Double.POSITIVE_INFINITY;
+        MenuItem cheaper=null;
+        for(MenuItem mi: list) {
+            if(mi.getPrice()<minPrice) {
+                minPrice=mi.getPrice();
+                cheaper=mi;
+            }
+        }
+        return cheaper;
     }
 }
