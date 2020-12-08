@@ -12,7 +12,7 @@ public class BillCalculator implements TakeAwayBill {
 
     public double getOrderPrice(List<MenuItem> itemsOrder, User user)
             throws TakeAwayBillException {
-        if(itemsOrder.size()<1) {
+        if(itemsOrder.size()<1 || itemsOrder.size()>30) {
             throw new TakeAwayBillException();
         }else
         {

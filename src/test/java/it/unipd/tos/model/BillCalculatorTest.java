@@ -24,6 +24,26 @@ public class BillCalculatorTest {
         billCalc.getOrderPrice(MenuItemList, user);
     }
     
+    @Test(expected= TakeAwayBillException.class)
+    public void BillCalculator_More_Than_30_Elements_List_Test()
+            throws TakeAwayBillException{
+        System.out.println("BillCalculator_More_Than_30_Elements_List_Test");
+        
+        BillCalculator billCalc=new BillCalculator();
+        List<MenuItem> MenuItemList=new ArrayList<MenuItem>();
+        int itemsQuantity=31;
+        int price=3;
+        for(int x=0;x<itemsQuantity;x++) {
+            MenuItem menuItem = new MenuItem(
+                    ItemType.Budino,
+                    "Budino2", 
+                    price);
+            MenuItemList.add(menuItem);
+        }
+        User user = new User(3,"Francesco","Carli",19);
+        billCalc.getOrderPrice(MenuItemList, user);
+    }
+    
     @Test
     public void BillCalculator_Single_Input_Test()
             throws TakeAwayBillException{
@@ -102,12 +122,11 @@ public class BillCalculatorTest {
                     price);
             MenuItemList.add(menuItem);
         }
-        User user = new User(1,"Carlo","Franchi",15);
+        User user = new User(2,"Carlo","Franchi",15);
         double resultPrice=0;
         resultPrice=billCalc.getOrderPrice(MenuItemList, user);
         double expectedBasePrice=itemsQuantity*price;
         double expectedPrice= expectedBasePrice * 0.9;
         assertEquals(expectedPrice,resultPrice,0);
     }
-    
 }
