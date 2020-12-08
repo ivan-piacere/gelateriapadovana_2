@@ -15,7 +15,7 @@ public class BillCalculator implements TakeAwayBill {
             throw new TakeAwayBillException();
         }else
         {
-            double sum=0;
+            double sum = 0;
             for (MenuItem menuItem : itemsOrder) {
                 sum+=menuItem.getPrice();
                 }
