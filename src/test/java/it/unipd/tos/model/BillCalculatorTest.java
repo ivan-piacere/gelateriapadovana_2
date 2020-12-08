@@ -80,7 +80,7 @@ public class BillCalculatorTest {
     }
     
     @Test
-    public void BillCalculator_More_Than_5_Gelati()
+    public void BillCalculator_More_Than_5_Gelati_Test()
             throws TakeAwayBillException{
         System.out.println("BillCalculator_More_Than_5_Gelati");
         BillCalculator billCalc=new BillCalculator();
@@ -107,7 +107,7 @@ public class BillCalculatorTest {
     }
     
     @Test
-    public void BillCalculator_More_Than_50_Euros()
+    public void BillCalculator_More_Than_50_Euros_Test()
             throws TakeAwayBillException{
         System.out.println("BillCalculator_More_Than_50_Euros");
         
@@ -128,5 +128,19 @@ public class BillCalculatorTest {
         double expectedBasePrice=itemsQuantity*price;
         double expectedPrice= expectedBasePrice * 0.9;
         assertEquals(expectedPrice,resultPrice,0);
+    }
+    
+    @Test
+    public void BillCalculator_Total_Less_Than_10_Euros_Test()
+            throws TakeAwayBillException{
+        System.out.println("BillCalculator_Total_Less_Than_10_Euros_Test");
+        BillCalculator billCalc=new BillCalculator();
+        MenuItem menuItem = new MenuItem(ItemType.Budino, "Budino3", 6);
+        List<MenuItem> MenuItemList=new ArrayList<MenuItem>();
+        MenuItemList.add(menuItem);
+        User user = new User(4,"Carlo","Carli",35);
+        double resultPrice=0;
+        resultPrice=billCalc.getOrderPrice(MenuItemList, user);
+        assertEquals(6 + 0.5,resultPrice,0);
     }
 }

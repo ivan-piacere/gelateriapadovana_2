@@ -30,12 +30,10 @@ public class BillCalculator implements TakeAwayBill {
                                               .getPrice()
                                               /2;
                 sum-=halfPriceCheaperGelato;
-            }
-            System.out.println("endcheap");
-            System.out.println(sum);
-            
-            if(sum>50) {
+            }else if(sum>50) {
                 sum -=sum/10;
+            }else if(sum<10) {
+                sum+= 0.5; 
             }
             return sum;
         }
