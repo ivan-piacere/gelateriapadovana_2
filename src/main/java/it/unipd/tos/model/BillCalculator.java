@@ -36,6 +36,7 @@ public class BillCalculator implements TakeAwayBill {
             boolean freeOrder=false;
             if(user.age<18) {
                 freeOrder=checkDateTimeAndSetValues(date_time);
+                System.out.println("freeOrder: "+freeOrder);
             }
             if(freeOrder==false) {
                 List<MenuItem> gelatiList=new ArrayList<MenuItem>();
@@ -72,12 +73,13 @@ public class BillCalculator implements TakeAwayBill {
         return cheaper;
     }
     
-    private boolean checkDateTimeAndSetValues(LocalDateTime orderTime) 
+    private boolean checkDateTimeAndSetValues(LocalDateTime orderDaterTime) 
             throws TakeAwayBillException{
 
-        if(orderTime.toLocalTime().isAfter(LocalTime.parse("18:00"))
-        && orderTime.toLocalTime().isBefore(LocalTime.parse("19:00"))) {
-            if(orderTime.toLocalDate().isEqual(lastDateOfFreeOrders))
+        if(orderDaterTime.toLocalTime().isAfter(LocalTime.parse("18:00"))
+        && orderDaterTime.toLocalTime().isBefore(LocalTime.parse("19:00"))) {
+            if(orderDaterTime.toLocalDate().
+               isEqual(lastDateOfFreeOrders))
             {
                 if(freeOrdersGiven<10) {
                     if(Math.random()<0.5)
@@ -86,9 +88,10 @@ public class BillCalculator implements TakeAwayBill {
                         return true;
                     }
                 }
-            }else if(orderTime.toLocalDate().isAfter(lastDateOfFreeOrders)){
+            }else if(orderDaterTime.toLocalDate().
+                     isAfter(lastDateOfFreeOrders)){
                 if(Math.random()>0.5) {
-                    lastDateOfFreeOrders=orderTime.toLocalDate();
+                    lastDateOfFreeOrders=orderDaterTime.toLocalDate();
                     freeOrdersGiven=1;
                     return true;
                 }

@@ -184,5 +184,74 @@ public class BillCalculatorTest {
         }
     }
     
+    @Test(expected = TakeAwayBillException.class)
+    public void BillCalculator_Free_Order_Previous_To_Last_Free_Order_Test() 
+            throws TakeAwayBillException{
+        System.out.println(
+                "BillCalculator_Ten_Free_Orders_On_Same_Date_Test"
+                );
+        
+        BillCalculator billCalc=new BillCalculator();
+        int freeOrdersGiven=0;
+        while(freeOrdersGiven<1) {
+            MenuItem menuItem = new MenuItem(ItemType.Budino, "Budino3", 6);
+            List<MenuItem> MenuItemList=new ArrayList<MenuItem>();
+            MenuItemList.add(menuItem);
+            User user = new User(5,"Carlotta","Carli",17);
+            LocalDateTime date_time=LocalDateTime.parse("2020-12-03T18:25:30");
+            double resultPrice;
+            resultPrice=billCalc.getOrderPrice(MenuItemList, user, date_time);
+            if(resultPrice==0) {
+                freeOrdersGiven+=1;
+            }
+        }
+        
+        MenuItem menuItem2 = new MenuItem(ItemType.Gelato, "Puffo", 3);
+        List<MenuItem> MenuItemList2=new ArrayList<MenuItem>();
+        MenuItemList2.add(menuItem2);
+        User user2 = new User(700,"Marco","Carli",16);
+        LocalDateTime date_time2=LocalDateTime.parse("2018-09-03T18:41:30");
+        
+        billCalc.getOrderPrice(MenuItemList2, user2, date_time2);
+    }
+    
+    @Test
+    public void BillCalculator_Time_After_19_Test() 
+            throws TakeAwayBillException{
+        System.out.println(
+                "BillCalculator_Time_After_19_Test"
+                );
+        
+        BillCalculator billCalc=new BillCalculator();
+        MenuItem menuItem = new MenuItem(ItemType.Budino, "Budino3", 11);
+        List<MenuItem> MenuItemList=new ArrayList<MenuItem>();
+        MenuItemList.add(menuItem);
+        User user = new User(5,"Carlotta","Carli",17);
+        LocalDateTime date_time=LocalDateTime.parse("2020-12-03T19:25:30");
+        double expectedPrice=menuItem.getPrice();
+        double resultPrice;
+        resultPrice=billCalc.getOrderPrice(MenuItemList, user, date_time);
+        assertEquals(expectedPrice,resultPrice,0);
+    }
+    
+    @Test
+    public void BillCalculator_Time_Before_18_Test() 
+            throws TakeAwayBillException{
+        System.out.println(
+                "BillCalculator_Time_Before_18_Test"
+                );
+        
+        BillCalculator billCalc=new BillCalculator();
+        MenuItem menuItem = new MenuItem(ItemType.Budino, "Budino3", 11);
+        List<MenuItem> MenuItemList=new ArrayList<MenuItem>();
+        MenuItemList.add(menuItem);
+        User user = new User(5,"Carlotta","Carli",17);
+        LocalDateTime date_time=LocalDateTime.parse("2020-12-03T17:25:30");
+        double expectedPrice=menuItem.getPrice();
+        double resultPrice;
+        resultPrice=billCalc.getOrderPrice(MenuItemList, user, date_time);
+        assertEquals(expectedPrice,resultPrice,0);
+    }
+    
     
 }
